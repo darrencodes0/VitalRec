@@ -1,0 +1,14 @@
+body {
+  display: flex;
+  justify-content: center;  
+  align-items: center;     
+  height: 100vh;         
+  margin: 0;               
+}
+
+#login-box {
+  border: 2px black solid;
+  padding: 30px;
+}
+
+
