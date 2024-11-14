@@ -6,7 +6,7 @@ Using flask, html, css, sql, mongodb, python
 Install all the dependencies:
 - pip install -r requirements.txt
 
-! Make sure you activate a virtual environment before installing dependencies !
+! Make sure you do this in a virtual environment before installing dependencies !
 
 ## To start Flask Application
 
