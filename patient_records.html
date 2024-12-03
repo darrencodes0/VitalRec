@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Records</title>
+    <link rel="stylesheet" href="patient_records.css">
+</head>
+<body>
+    <header>
+        <h1>Patient Records</h1>
+    </header>
+    <div class="container">
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Search by Patient Name or ID">
+            <button onclick="searchPatient()">Search</button>
+        </div>
+        <table class="patient-records" id="patientTable">
+            <thead>
+                <tr>
+                    <th>Patient ID</th>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Sex</th>
+                    <th>Height (cm)</th>
+                    <th>Weight (kg)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Placeholder patient records -->
+                <tr>
+                    <td>P001</td>
+                    <td>John Doe</td>
+                    <td>35</td>
+                    <td>Male</td>
+                    <td>175</td>
+                    <td>70</td>
+                </tr>
+                <tr>
+                    <td>P002</td>
+                    <td>Jane Smith</td>
+                    <td>28</td>
+                    <td>Female</td>
+                    <td>160</td>
+                    <td>55</td>
+                </tr>
+                <tr>
+                    <td>P003</td>
+                    <td>Emily Johnson</td>
+                    <td>40</td>
+                    <td>Female</td>
+                    <td>168</td>
+                    <td>60</td>
+                </tr>
+                <tr>
+                    <td>P004</td>
+                    <td>Michael Brown</td>
+                    <td>50</td>
+                    <td>Male</td>
+                    <td>180</td>
+                    <td>85</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <footer>
+        &copy; 2024 Rien General Hospital. All Rights Reserved.
+    </footer>
+    <script>
+        function searchPatient() {
+            const input = document.getElementById('searchInput').value.toLowerCase();
+            const table = document.getElementById('patientTable');
+            const rows = table.getElementsByTagName('tr');
+
+            for (let i = 1; i < rows.length; i++) {
+                const cells = rows[i].getElementsByTagName('td');
+                let found = false;
+
+                for (let j = 0; j < cells.length; j++) {
+                    if (cells[j].textContent.toLowerCase().includes(input)) {
+                        found = true;
+                        break;
+                    }
+                }
+
+                rows[i].style.display = found ? '' : 'none';
+            }
+        }
+    </script>
+</body>
+</html>

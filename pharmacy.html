@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pharmacy</title>
+    <link rel="stylesheet" href="pharmacy.css">
+</head>
+<body>
+    <header>
+        <h1>Pharmacy</h1>
+    </header>
+    <div class="container">
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Search by Medicine Name or Drug Code">
+            <button onclick="searchMedicine()">Search</button>
+        </div>
+        <table class="pharmacy-records" id="pharmacyTable">
+            <thead>
+                <tr>
+                    <th>Medicine Name</th>
+                    <th>Drug Code</th>
+                    <th>Dosage (Recommended)</th>
+                    <th>Public Access</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Placeholder medicine records -->
+                <tr>
+                    <td>Paracetamol</td>
+                    <td>PC101</td>
+                    <td>500 mg</td>
+                    <td class="public-access">✔</td>
+                </tr>
+                <tr>
+                    <td>Ibuprofen</td>
+                    <td>IB202</td>
+                    <td>200 mg</td>
+                    <td class="public-access">✔</td>
+                </tr>
+                <tr>
+                    <td>Amoxicillin</td>
+                    <td>AM303</td>
+                    <td>250 mg</td>
+                    <td class="public-access">❌</td>
+                </tr>
+                <tr>
+                    <td>Atorvastatin</td>
+                    <td>AT404</td>
+                    <td>10 mg</td>
+                    <td class="public-access">❌</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <footer>
+        &copy; 2024 Rien General Hospital. All Rights Reserved.
+    </footer>
+    <script>
+        function searchMedicine() {
+            const input = document.getElementById('searchInput').value.toLowerCase();
+            const table = document.getElementById('pharmacyTable');
+            const rows = table.getElementsByTagName('tr');
+
+            for (let i = 1; i < rows.length; i++) {
+                const cells = rows[i].getElementsByTagName('td');
+                let found = false;
+
+                for (let j = 0; j < cells.length; j++) {
+                    if (cells[j].textContent.toLowerCase().includes(input)) {
+                        found = true;
+                        break;
+                    }
+                }
+
+                rows[i].style.display = found ? '' : 'none';
+            }
+        }
+    </script>
+</body>
+</html>

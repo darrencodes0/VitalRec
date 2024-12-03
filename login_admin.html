@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login</title>
+    <link rel="stylesheet" href="login_admin.css">
+</head>
+<body>
+    <div class="login-container">
+        <h1>Admin Login</h1>
+        <form id="loginForm" onsubmit="return validateLogin()">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" placeholder="Enter your username" required>
+            
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="Enter your password" required>
+            
+            <button type="submit">Login</button>
+        </form>
+        <!-- Back to Department Selection -->
+        <a href="department.html" class="back-link">Back to Department Selection</a>
+    </div>
+    <script>
+        // Predefined credentials
+        const validCredentials = {
+            username: "admin",
+            password: "password123"
+        };
+
+        // Validate Login
+        function validateLogin() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            if (username === validCredentials.username && password === validCredentials.password) {
+                alert('Login successful!');
+                window.location.href = 'dashboard.html'; // Redirect to dashboard
+                return false; // Prevent form submission
+            } else {
+                alert('Invalid username or password. Please try again.');
+                return false; // Prevent form submission
+            }
+        }
+    </script>
+</body>
+</html>

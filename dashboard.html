@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+    <header>
+        <h1>Welcome to Rien General Hospital</h1>
+    </header>
+    <div class="container">
+        <h1>Dashboard</h1>
+        <div class="nav-menu">
+            <a href="patient_records.html" id="patient-records-link">Patient Records</a>
+            <a href="insurance.html" id="insurance-link">Insurance</a>
+            <a href="pharmacy.html" id="pharmacy-link">Pharmacy</a>
+            <a href="manage_appointments.html" id="appointments-link">Manage Appointments</a>
+            <a href="https://www.google.com" target="_blank" id="internet-link">Internet</a>
+            <a href="department.html" id="logout-link">Log Out</a>
+        </div>
+    </div>
+    <footer>
+        &copy; 2024 Rien General Hospital. All Rights Reserved.
+    </footer>
+    <script>
+        // Role-Based Access Control
+        const userRole = new URLSearchParams(window.location.search).get('role');
+
+        // Restrict access based on role
+        if (userRole === 'staff') {
+            document.getElementById('patient-records-link').style.display = 'none';
+            document.getElementById('insurance-link').style.display = 'none';
+            document.getElementById('pharmacy-link').style.display = 'none';
+        } else if (userRole === 'patient') {
+            document.getElementById('pharmacy-link').style.display = 'none';
+            document.getElementById('appointments-link').style.display = 'none';
+        }
+    </script>
+</body>
+</html>

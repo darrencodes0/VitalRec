@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insurance</title>
+    <link rel="stylesheet" href="insurance.css">
+</head>
+<body>
+    <header>
+        <h1>Insurance</h1>
+    </header>
+    <div class="container">
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Search by Insurance ID, Patient ID, or Provider Name">
+            <button onclick="searchInsurance()">Search</button>
+        </div>
+        <table class="insurance-table" id="insuranceTable">
+            <thead>
+                <tr>
+                    <th>Insurance ID</th>
+                    <th>Patient ID</th>
+                    <th>Provider Name</th>
+                    <th>Policy Number</th>
+                    <th>Expires</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Placeholder insurance records -->
+                <tr>
+                    <td>INS001</td>
+                    <td>P001</td>
+                    <td>BlueCross</td>
+                    <td>123456789</td>
+                    <td>2024-12-31</td>
+                </tr>
+                <tr>
+                    <td>INS002</td>
+                    <td>P002</td>
+                    <td>Aetna</td>
+                    <td>987654321</td>
+                    <td>2025-05-15</td>
+                </tr>
+                <tr>
+                    <td>INS003</td>
+                    <td>P003</td>
+                    <td>Cigna</td>
+                    <td>456789123</td>
+                    <td>2025-01-01</td>
+                </tr>
+                <tr>
+                    <td>INS004</td>
+                    <td>P004</td>
+                    <td>UnitedHealth</td>
+                    <td>321654987</td>
+                    <td>2024-10-20</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <footer>
+        &copy; 2024 Rien General Hospital. All Rights Reserved.
+    </footer>
+    <script>
+        function searchInsurance() {
+            const input = document.getElementById('searchInput').value.toLowerCase();
+            const table = document.getElementById('insuranceTable');
+            const rows = table.getElementsByTagName('tr');
+
+            for (let i = 1; i < rows.length; i++) {
+                const cells = rows[i].getElementsByTagName('td');
+                let found = false;
+
+                for (let j = 0; j < cells.length; j++) {
+                    if (cells[j].textContent.toLowerCase().includes(input)) {
+                        found = true;
+                        break;
+                    }
+                }
+
+                rows[i].style.display = found ? '' : 'none';
+            }
+        }
+    </script>
+</body>
+</html>
