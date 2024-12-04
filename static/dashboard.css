@@ -9,13 +9,10 @@ body {
 /* Header Styling */
 header {
     background-color: #008BB0; /* Header color */
+    border-bottom: 1px solid grey;
     color: white;
     padding: 20px;
     text-align: center;
-}
-
-#dashboard-label{
-    margin-left: 395px;
 }
 
 /* Container Styling */
@@ -83,6 +80,7 @@ footer {
     position: fixed;
     color: white;
     text-decoration: underline;
+    border-top: 1px solid grey;
     bottom: 0;
     left: 0;
     width: 100%; /* Stretch footer across the width of the viewport */

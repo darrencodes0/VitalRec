@@ -10,9 +10,8 @@ body {
 header {
     position: fixed;
     color: white;
-    background-color: #008BB0; /* Blue background */
-    border-bottom: 2px solid white;
-
+    background-color: #0066CC; /* Blue background */
+    border-bottom: 1px solid white;
     top: 0;
     left: 0;
     width: 100%; /* Stretch header across the width of the viewport */
@@ -27,7 +26,7 @@ header {
 .button-container {
     display: grid;
     gap: 20px;
-    padding-top: 120px;
+    padding-top: 130px;
     max-width:200px;
     margin: 0 auto;
 }
@@ -78,7 +77,17 @@ header {
     opacity: 0.8;
 }
 
-#footer{
- margin-top: 400px;
- color: white;
+footer {
+    position: fixed;
+    color: white;
+    text-decoration: underline;
+    border-top: 1px white solid;
+    bottom: 0;
+    left: 0;
+    width: 100%; /* Stretch footer across the width of the viewport */
+    text-align: center;
+    padding: 20px;
+    font-size: 14px;
+    background-color: #0066CC; /* Blue background */
+    z-index: 1000; /* Ensures it stays above other elements */
 }
