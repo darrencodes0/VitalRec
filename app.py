@@ -6,7 +6,7 @@ app.secret_key = 'savingthelives'
 
 @app.route("/<role>/login", methods=["GET", "POST"])
 def login(role):
-    if role not in ["admin", "doctor", "patient", "staff"]:
+    if role not in ["admin", "doctor", "patient"]:
         return render_template("error.html", error="Invalid role, please return and select the correct department for login"), 404  # Pass error to template
 
     template_name = f"login_{role}.html"

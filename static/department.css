@@ -7,17 +7,27 @@ body {
     margin: 0;
 }
 
-/* Heading Styling */
-h1 {
-    margin-bottom: 30px;
-    color: white; /* White text */
-    font-size: 2em;
+header {
+    position: fixed;
+    color: white;
+    background-color: #008BB0; /* Blue background */
+    border-bottom: 2px solid white;
+
+    top: 0;
+    left: 0;
+    width: 100%; /* Stretch header across the width of the viewport */
+    text-align: center;
+    padding: 20px;
+    font-size: 14px;
+    z-index: 1000; /* Ensures it stays above other elements */
 }
+
 
 /* Button Container Styling */
 .button-container {
     display: grid;
     gap: 20px;
+    padding-top: 120px;
     max-width:200px;
     margin: 0 auto;
 }

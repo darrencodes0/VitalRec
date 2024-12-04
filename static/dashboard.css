@@ -14,6 +14,10 @@ header {
     text-align: center;
 }
 
+#dashboard-label{
+    margin-left: 395px;
+}
+
 /* Container Styling */
 .container {
     padding: 20px;
@@ -78,6 +82,7 @@ h1 {
 footer {
     position: fixed;
     color: white;
+    text-decoration: underline;
     bottom: 0;
     left: 0;
     width: 100%; /* Stretch footer across the width of the viewport */

@@ -12,8 +12,8 @@
     <header>
         <h1 class="header_title">Welcome to HealthTrack!</h1>
     </header>
+    <h1 id="dashboard-label">Dashboard</h1>
     <div class="container">
-        <h1>Dashboard</h1>
         <div class="nav-menu">
 
             {% if session['role'] in ['doctor','admin'] %}
@@ -46,14 +46,14 @@
 
             <a href="https://www.google.com" target="_blank" id="internet-link">Internet</a>
 
-            {% if session['role'] in ['doctor', 'staff','admin','patient'] %}
+            {% if session['role'] in ['doctor','admin'] %}
             <a href="{{url_for('department')}}" id="logout-link">Log Out</a>
             {% endif %}
         
-                <img id="medical-image" src="static/images/couple-smiling.jpg" alt="We care about you.">
+
+            <img id="medical-image" src="static/images/couple-smiling.jpg" alt="We care about you.">
                 <img id="medical-image" src="static/images/doctors.jpg" alt="We care about you.">
                 <img id="medical-image" src="static/images/medication.jpg" alt="We care about you.">
-
         </div>
     </div>
     <footer>
