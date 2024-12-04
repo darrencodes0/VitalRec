@@ -17,9 +17,8 @@ h1 {
 /* Button Container Styling */
 .button-container {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 2 columns */
     gap: 20px;
-    max-width: 600px;
+    max-width:200px;
     margin: 0 auto;
 }
 
@@ -71,4 +70,5 @@ h1 {
 
 #footer{
  margin-top: 400px;
+ color: white;
 }
