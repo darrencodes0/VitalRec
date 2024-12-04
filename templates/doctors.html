@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Doctors</title>
+    <link rel="stylesheet" href="/static/patient_records.css">
+    <link rel="stylesheet" href="/static/styles.css">
+
+</head>
+<body>
+    <header>
+        <h1>Manage Doctors</h1>
+    </header>
+    <div class="container">
+        <div class="search-bar">
+          <a class="back_button" href="{{ url_for('dashboard') }}">Back</a>
+
+            <input type="text" id="searchInput" class="search-input" placeholder="Search by Doctor Name, Department, or Email">
+            <button class="search-button" onclick="searchDoctor()">Search</button>
+        </div>
+        <table class="patient-records" id="doctorTable">
+            <thead>
+                <tr>
+                    <th>Doctor Name</th>
+                    <th>Department</th>
+                    <th>Phone Number</th>
+                    <th>Email</th>
+                    <th>Office Number</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for doctor in doctors %}
+                <tr>
+                    <td>{{ doctor.first_name }} {{ doctor.last_name }}</td>
+                    <td>{{ doctor.department_name }}</td>
+                    <td>{{ doctor.phone_number }}</td>
+                    <td>{{ doctor.email }}</td>
+                    <td>{{ doctor.office_number }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <footer>
+        &copy; 2024 HealthTrack. All Rights Reserved.
+    </footer>
+    <script>
+        function searchDoctor() {
+            const input = document.getElementById('searchInput').value.toLowerCase();
+            const table = document.getElementById('doctorTable');
+            const rows = table.getElementsByTagName('tr');
+
+            for (let i = 1; i < rows.length; i++) {
+                const cells = rows[i].getElementsByTagName('td');
+                let found = false;
+
+                for (let j = 0; j < cells.length; j++) {
+                    if (cells[j].textContent.toLowerCase().includes(input)) {
+                        found = true;
+                        break;
+                    }
+                }
+
+                rows[i].style.display = found ? '' : 'none';
+            }
+        }
+    </script>
+</body>
+</html>

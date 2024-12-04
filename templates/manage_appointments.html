@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Appointments</title>
+    <link rel="stylesheet" href="/static/patient_records.css">
+    <link rel="stylesheet" href="/static/styles.css">
+
+</head>
+<body>
+    <header>
+        <h1>Manage Appointments</h1>
+    </header>
+    <div class="container">
+        <div class="search-bar">
+            <a class="back_button" href="{{ url_for('dashboard') }}">Back</a>
+
+            <input type="text" id="searchInput" class="search-input" placeholder="Search by Patient ID, Doctor ID, or Reason for Visit">
+            <button class="search-button" onclick="searchAppointment()">Search</button>
+        </div>
+        <table class="patient-records" id="appointmentTable">
+            <thead>
+                <tr>
+                    <th>Patient ID</th>
+                    <th>Doctor ID</th>
+                    <th>Room ID</th>
+                    <th>Creation Date</th>
+                    <th>Appointment Date</th>
+                    <th>Reason for Visit</th>
+                    <th>Status</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for appointment in appointments %}
+                <tr>
+                    <td>{{ appointment.patient_id }}</td>
+                    <td>{{ appointment.doctor_id }}</td>
+                    <td>{{ appointment.room_id }}</td>
+                    <td>{{ appointment.creation_date }}</td>
+                    <td>{{ appointment.appointment_date }}</td>
+                    <td>{{ appointment.reason_for_visit }}</td>
+                    <td>{{ appointment.status }}</td>
+                    <td>{{ appointment.notes }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <footer>
+        &copy; 2024 HealthTrack. All Rights Reserved.
+    </footer>
+    <script>
+        function searchAppointment() {
+            const input = document.getElementById('searchInput').value.toLowerCase();
+            const table = document.getElementById('appointmentTable');
+            const rows = table.getElementsByTagName('tr');
+
+            for (let i = 1; i < rows.length; i++) {
+                const cells = rows[i].getElementsByTagName('td');
+                let found = false;
+
+                for (let j = 0; j < cells.length; j++) {
+                    if (cells[j].textContent.toLowerCase().includes(input)) {
+                        found = true;
+                        break;
+                    }
+                }
+
+                rows[i].style.display = found ? '' : 'none';
+            }
+        }
+    </script>
+</body>
+</html>

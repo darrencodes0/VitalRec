@@ -1,0 +1,47 @@
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  background-color: #77B3B5;
+  justify-content: center;  
+  align-items: center;     
+  height: 100vh;          
+  margin: 0;            
+}
+
+#register-box {
+  background-color: white;
+  padding: 20px;
+  padding-right: 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+#submit-button{
+  background-color: #007BFF;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  padding: 10px;
+  margin-right: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#submit-button:hover{
+  background-color:rgb(30,144,255);
+  transition: 0.3s;
+}
+
+#account-link{
+  text-decoration: none;
+  color: black;
+}
+
+#account-link:hover{
+  text-decoration: underline;
+  opacity: 0.8;
+}
+

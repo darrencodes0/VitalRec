@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Hospital Registration</title>
+  <link rel="stylesheet" href="/static/register.css">
+  <link rel="stylesheet" href="/static/styles.css">
+
+</head>
+
+
+<body>
+ <div id="register-box">
+  <h1>Registration</h1>
+  <form id="department_submission" action="{{ url_for('registration') }}" method="POST">
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" required>
+
+    <p>Role:</p>
+    <input type="radio" id="admin" name="role" value="admin" required> 
+    <label for="admin">Adminstrator</label><br>
+
+    <input type="radio" id="doctor" name="role" value="doctor" required>
+    <label for="doctor">Doctor</label><br>
+
+    <input type="radio" id="staff" name="role" value="staff" required>
+    <label for="staff">Staff</label><br>
+
+    <input type="radio" id="patient" name="role" value="patient" required>
+    <label for="patient">Patient</label><br>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required><br>
+
+    <button id="submit-button" type="submit">Submit</button><br>
+
+    <a id="account-link" href="{{ url_for('department') }}">Already have an account?</a>
+
+  </div>
+</body>
+</html>

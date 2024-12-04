@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="/static/dashboard.css">
+    <link rel="stylesheet" href="/static/styles.css">
+
+</head>
+<body>
+    <header>
+        <h1 class="header_title">Welcome to HealthTrack</h1>
+    </header>
+    <div class="container">
+        <h1>Dashboard</h1>
+        <div class="nav-menu">
+
+            {% if session['role'] in ['doctor', 'staff','admin'] %}
+            <a href="{{ url_for('records') }}" id="patient-records-link">Patient Records</a>
+            {% endif %}
+
+            {% if session['role'] in ['doctor', 'staff','admin'] %}
+            <a href="{{url_for('insurance')}}" id="insurance-link">Insurance</a>
+            {% endif %}
+
+            {% if session['role'] in ['doctor', 'staff','admin'] %}
+            <a href="{{url_for('prescription')}}" id="pharmacy-link">Prescription</a>
+            {% endif %}
+
+            {% if session['role'] in ['doctor','staff','admin'] %}
+            <a href="{{url_for('appointments')}}" id="appointments-link">Appointments</a>
+            {% endif %}
+
+            {% if session['role'] in ['doctor', 'staff','admin','patient'] %}
+            <a href="{{url_for('doctors')}}" id="appointments-link">Doctors</a>
+            {% endif %}
+
+            {% if session['role'] in ['doctor', 'staff','admin','patient'] %}
+            <a href="{{url_for('departments')}}" id="appointments-link">Departments</a>
+            {% endif %}
+
+            {% if session['role'] in ['doctor','staff','admin'] %}
+            <a href="{{url_for('medical_history')}}" id="appointments-link">Medical History</a>
+            {% endif %}
+
+            <a href="https://www.google.com" target="_blank" id="internet-link">Internet</a>
+
+            {% if session['role'] in ['doctor', 'staff','admin','patient'] %}
+            <a href="{{url_for('department')}}" id="logout-link">Log Out</a>
+            {% endif %}
+
+        
+        </div>
+    </div>
+    <footer>
+        &copy; 2024 HealthTrack. All Rights Reserved.
+    </footer>
+</body>
+</html>

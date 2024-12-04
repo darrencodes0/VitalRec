@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Departments</title>
+    <link rel="stylesheet" href="/static/patient_records.css">
+    <link rel="stylesheet" href="/static/styles.css">
+
+</head>
+<body>
+    <header>
+        <h1>Medical Departments</h1>
+    </header>
+    <div class="container">
+        <div class="search-bar">
+          <a class="back_button" href="{{ url_for('dashboard') }}">Back</a>
+
+            <input type="text" id="searchInput" placeholder="Search by Department Name or ID">
+            <button onclick="searchDepartment()">Search</button>
+        </div>
+        <table class="patient-records" id="departmentTable">
+            <thead>
+                <tr>
+                    <th>Department ID</th>
+                    <th>Department Name</th>
+                    <th>Description</th>
+                    <th>Contact</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for department in departments %}
+                <tr>
+                    <td>{{ department.id }}</td>
+                    <td>{{ department.department_name }}</td>
+                    <td>{{ department.description }}</td>
+                    <td>{{ department.phone_number }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <footer>
+        &copy; 2024 HealthTrack. All Rights Reserved.
+    </footer>
+    <script>
+        function searchDepartment() {
+            const input = document.getElementById('searchInput').value.toLowerCase();
+            const table = document.getElementById('departmentTable');
+            const rows = table.getElementsByTagName('tr');
+
+            for (let i = 1; i < rows.length; i++) {
+                const cells = rows[i].getElementsByTagName('td');
+                let found = false;
+
+                for (let j = 0; j < cells.length; j++) {
+                    if (cells[j].textContent.toLowerCase().includes(input)) {
+                        found = true;
+                        break;
+                    }
+                }
+
+                rows[i].style.display = found ? '' : 'none';
+            }
+        }
+    </script>
+</body>
+</html>

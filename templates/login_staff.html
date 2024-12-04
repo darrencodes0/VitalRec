@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff Login</title>
+    <link rel="stylesheet" href="/static/login_staff.css">
+</head>
+<body>
+    <div class="login-container">
+        <h1>Staff Login</h1>
+
+        <!-- Display error message if it exists -->
+        {% if error %}
+            <p style="color: red; font-weight: bold;">{{ error }}</p>
+        {% endif %}
+        
+        <form action="{{url_for('login', role='staff')}}" method="post">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" placeholder="Enter your username" required>
+            
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="Enter your password" required>
+
+            <input type="hidden" name="role" value="staff">
+
+            <button type="submit">Login</button>
+        </form>
+        <!-- Back to Department Selection -->
+        <a href="{{ url_for('department') }}" class="back-link">Back to Department Selection</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prescription Records</title>
+    <link rel="stylesheet" href="/static/patient_records.css">
+    <link rel="stylesheet" href="/static/styles.css">
+
+</head>
+<body>
+    <header>
+        <h1>Prescription Records</h1>
+    </header>
+    <div class="container">
+        <div class="search-bar">
+            <a class="back_button" href="{{ url_for('dashboard') }}">Back</a>
+
+            <input type="text" id="searchInput" placeholder="Search by Patient ID, Medication, or Dosage">
+            <button onclick="searchPrescription()">Search</button>
+        </div>
+        <table class="patient-records" id="prescriptionTable">
+            <thead>
+                <tr>
+                    <th>Patient ID</th>
+                    <th>Medication Name</th>
+                    <th>Dosage</th>
+                    <th>Frequency</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for prescription in prescriptions %}
+                <tr>
+                    <td>{{ prescription.patient_id }}</td>
+                    <td>{{ prescription.medication_name }}</td>
+                    <td>{{ prescription.dosage }}</td>
+                    <td>{{ prescription.frequency }}</td>
+                    <td>{{ prescription.start_date }}</td>
+                    <td>{{ prescription.end_date or "Ongoing" }}</td>
+                    <td>{{ prescription.notes }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <footer>
+        &copy; 2024 HealthTrack. All Rights Reserved.
+    </footer>
+    <script>
+        function searchPrescription() {
+            const input = document.getElementById('searchInput').value.toLowerCase();
+            const table = document.getElementById('prescriptionTable');
+            const rows = table.getElementsByTagName('tr');
+
+            for (let i = 1; i < rows.length; i++) {
+                const cells = rows[i].getElementsByTagName('td');
+                let found = false;
+
+                for (let j = 0; j < cells.length; j++) {
+                    if (cells[j].textContent.toLowerCase().includes(input)) {
+                        found = true;
+                        break;
+                    }
+                }
+
+                rows[i].style.display = found ? '' : 'none';
+            }
+        }
+    </script>
+</body>
+</html>
