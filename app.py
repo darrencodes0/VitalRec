@@ -1,13 +1,14 @@
 from flask import Flask, request, render_template, redirect, url_for, session
+from secret_key import secret_key
 from database import user_table
 
 app = Flask(__name__)
-app.secret_key = 'savingthelives'
+app.secret_key = secret_key
 
 @app.route("/<role>/login", methods=["GET", "POST"])
 def login(role):
     if role not in ["admin", "doctor", "patient"]:
-        return render_template("error.html", error="Invalid role, please return and select the correct department for login"), 404  # Pass error to template
+        return render_template("error.html", error="Invalid role, please return and select the correct department for login"), 404  
 
     template_name = f"login_{role}.html"
 
@@ -15,24 +16,24 @@ def login(role):
         username = request.form.get("username")
         password = request.form.get("password")
 
-        # Validate credentials and role
+        
         found_user = user_table.find_one({
             "username": username,
             "password": password
         })
 
         if found_user:
-            # Check if the user's role matches the requested role
+            
             if found_user['role'] == role:
-                # Store role in session
+                
                 session['role'] = role
-                session['username'] = username  # Optional: Track the username
-                return redirect(url_for('dashboard'))  # Redirect to a dashboard
+                session['username'] = username  
+                return redirect(url_for('dashboard'))  
             else:
-                # User exists but the role is incorrect
+                
                 return render_template(template_name, error="You have an account but it's for a different role. Please log in with the correct role.")
         else:
-            # Username or password is incorrect
+            
             return render_template(template_name, error="Username and/or password are not correct")
 
     return render_template(template_name)
@@ -48,12 +49,15 @@ def registration():
         role = request.form.get("role")
         password = request.form.get("password")
 
-        user_table.insert_one({
-           "username": username,
-           "role": role,
-           "password": password
-        })
-        return redirect(url_for('department'))
+        if user_table.find_one({"username" : username}) is None:
+            user_table.insert_one({
+            "username": username,
+            "role": role,
+            "password": password
+            })
+            return redirect(url_for('department'))
+        else:
+            return render_template('register.html',error="Account with this username already exists")
 
     return render_template("register.html")
 
@@ -63,13 +67,12 @@ def department():
 
 @app.route("/dashboard")
 def dashboard():
-    role = session.get('role', None)  # Get the role from the session, or None if not found
+    role = session.get('role', None)  
     return render_template("dashboard.html", role=role)
 
 
 @app.route("/records")
 def records():
-    # Fetching data from the database (replace with actual database query)
     patients = [
         {"id": "P001", "first_name": "John", "last_name": "Doe", "dob": "1985-06-15", "gender": "Male", "phone_number": "555-1236", "email": "john.doe@example.com", "address": "123 Elm Street"},
         {"id": "P002", "first_name": "Jane", "last_name": "Smith", "dob": "1990-09-10", "gender": "Female", "phone_number": "555-5678", "email": "jane.smith@example.com", "address": "456 Oak Avenue"},
@@ -102,7 +105,7 @@ def insurance():
 
 @app.route("/prescription")
 def prescription():
-    # Example prescription data (replace this with actual database query)
+    
     prescriptions = [
         {"prescription_id": 1, "patient_id": 1, "doctor_id": 1, "medication_name": "Atorvastatin", "dosage": "10 mg", "frequency": "Once a day", "start_date": "2024-12-01", "end_date": "2025-01-01", "notes": "Take with water. Avoid grapefruit."},
         {"prescription_id": 2, "patient_id": 2, "doctor_id": 2, "medication_name": "Lisinopril", "dosage": "5 mg", "frequency": "Twice a day", "start_date": "2024-12-05", "end_date": "2025-02-05", "notes": "Monitor blood pressure daily."},
@@ -126,13 +129,13 @@ def prescription():
         {"prescription_id": 20, "patient_id": 20, "doctor_id": 8, "medication_name": "Omeprazole", "dosage": "20 mg", "frequency": "Once a day", "start_date": "2025-01-12", "end_date": "2025-03-12", "notes": "Take 30 minutes before meals."}
     ]
     
-    # Render the pharmacy template and pass the prescriptions data
+    
     return render_template("prescription.html", prescriptions=prescriptions)
 
 
 @app.route("/appointments")
 def appointments():
-    # Simulating appointment data from the database (replace with actual database query)
+    
     appointments_data = [
         {"appointment_id": 1, "patient_id": 1, "doctor_id": 1, "room_id": 1, "creation_date": '2024-12-01 09:00:00', 
          "appointment_date": '2024-12-05 10:00:00', "reason_for_visit": 'Routine check-up', "status": 'Scheduled', "notes": 'Bring previous records.'},
@@ -233,7 +236,7 @@ def departments():
 
 @app.route("/medical_history")
 def medical_history():
-    # Fetching data from the database (replace with actual database query)
+    
     medical_history_data = [
         {"patient_id": 1, "condition_name": "Hypertension", "diagnosis_date": "2020-06-15", "notes": "Patient advised to monitor blood pressure regularly."},
         {"patient_id": 1, "condition_name": "Type 2 Diabetes", "diagnosis_date": "2018-09-10", "notes": "Prescribed Metformin. Regular HbA1c checks required."},

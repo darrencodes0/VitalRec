@@ -13,22 +13,18 @@
         <h1 class="header_title">Select Your Department</h1>
     </header>
     <div class="button-container">
-        <!-- Admin Login -->
         <a href="{{ url_for('login', role='admin') }}" class="btn">
             <img src="static/images/admin-icon.jpg" alt="Admin Icon">
             <span>Admin</span>
         </a>
-        <!-- Doctor and Nurse Login -->
         <a href="{{ url_for('login', role='doctor') }}" class="btn">
             <img src="static/images/doctor-icon.png" alt="Doctor and Nurse Icon">
             <span>Doctor/Nurse</span>
         </a>
-        <!-- Patient Login -->
         <a href="{{ url_for('login', role='patient') }}" class="btn">
             <img src="static/images/patient-icon.png" alt="Staff Icon">
             <span>Patient</span>
         </a>
-    <!-- Registeration -->
     <a href="{{ url_for('registration') }}" class="back-link">New user? Register here!</a>    
     </div>
     <footer id="footer">

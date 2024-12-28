@@ -1,28 +1,28 @@
-/* General Body Styling */
+
 body {
     font-family: Arial, sans-serif;
     text-align: center;
     padding: 20px;
-    background-color: #008BB0; /* Blue background */
+    background-color: #008BB0;
     margin: 0;
 }
 
 header {
     position: fixed;
     color: white;
-    background-color: #0066CC; /* Blue background */
+    background-color: #0066CC;
     border-bottom: 1px solid white;
     top: 0;
     left: 0;
-    width: 100%; /* Stretch header across the width of the viewport */
+    width: 100%;
     text-align: center;
     padding: 20px;
     font-size: 14px;
-    z-index: 1000; /* Ensures it stays above other elements */
+    z-index: 1000;
 }
 
 
-/* Button Container Styling */
+
 .button-container {
     display: grid;
     gap: 20px;
@@ -31,7 +31,7 @@ header {
     margin: 0 auto;
 }
 
-/* Button Styling */
+
 .btn {
     display: flex;
     flex-direction: column;
@@ -41,30 +41,30 @@ header {
     border: none;
     border-radius: 10px;
     text-decoration: none;
-    background-color: grey; /* Grey button */
-    color: white; /* White text */
+    background-color: grey;
+    color: white;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s, box-shadow 0.2s;
 }
 
-/* Icon Styling */
+
 .btn img {
     width: 80px;
     height: 80px;
     margin-bottom: 10px;
 }
 
-/* Button Text Styling */
+
 .btn span {
     font-size: 18px;
     font-weight: bold;
 }
 
-/* Hover Effect */
+
 .btn:hover {
     transform: scale(1.05);
     box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
-    background-color: darkgrey; /* Darker grey on hover */
+    background-color: darkgrey;
 }
 
 .back-link{
@@ -84,10 +84,10 @@ footer {
     border-top: 1px white solid;
     bottom: 0;
     left: 0;
-    width: 100%; /* Stretch footer across the width of the viewport */
+    width: 100%;
     text-align: center;
     padding: 20px;
     font-size: 14px;
-    background-color: #0066CC; /* Blue background */
-    z-index: 1000; /* Ensures it stays above other elements */
+    background-color: #0066CC;
+    z-index: 1000;
 }

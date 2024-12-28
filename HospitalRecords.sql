@@ -4,14 +4,14 @@ Create Database HospitalRecords;
 Use HospitalRecords;
 
 CREATE TABLE Patient (
-    patient_id INT AUTO_INCREMENT PRIMARY KEY,       -- Unique identifier for each patient
-    first_name VARCHAR(100) NOT NULL,               -- Patient's first name
-    last_name VARCHAR(100) NOT NULL,                -- Patient's last name
-    date_of_birth DATE NOT NULL,                    -- Date of birth
-    gender ENUM('Male', 'Female', 'Other') NOT NULL, -- Gender
-    phone_number VARCHAR(15),                       -- Contact phone number
-    email VARCHAR(100),                             -- Email address
-    address TEXT                                    -- Residential address
+    patient_id INT AUTO_INCREMENT PRIMARY KEY,       
+    first_name VARCHAR(100) NOT NULL,               
+    last_name VARCHAR(100) NOT NULL,                
+    date_of_birth DATE NOT NULL,                    
+    gender ENUM('Male', 'Female', 'Other') NOT NULL, 
+    phone_number VARCHAR(15),                       
+    email VARCHAR(100),                             
+    address TEXT                                    
 );
 
 INSERT INTO Patient (first_name, last_name, date_of_birth, gender, phone_number, email, address)
@@ -39,10 +39,10 @@ VALUES
 
 
 CREATE TABLE Department (
-    department_id INT AUTO_INCREMENT PRIMARY KEY,   -- Unique identifier for each department
-    department_name VARCHAR(100) NOT NULL,          -- Name of the department (e.g., Cardiology)
-	phone_number VARCHAR(15),                       -- Contact phone number for the department
-    description TEXT                               -- Additional details about the department
+    department_id INT AUTO_INCREMENT PRIMARY KEY,   
+    department_name VARCHAR(100) NOT NULL,          
+	phone_number VARCHAR(15),                       
+    description TEXT                               
 );
 
 INSERT INTO Department (department_name, description, phone_number)
@@ -55,7 +55,7 @@ VALUES
 
 CREATE TABLE Room (
     room_id INT AUTO_INCREMENT PRIMARY KEY,
-    room_number VARCHAR(10) NOT NULL               -- Room number
+    room_number VARCHAR(10) NOT NULL               
 );
 
 INSERT INTO Room (room_number)
@@ -74,13 +74,13 @@ VALUES
 ('R226'), ('R227'), ('R228'), ('R229'), ('R230');
 
 CREATE TABLE Doctor (
-    doctor_id INT AUTO_INCREMENT PRIMARY KEY,       -- Unique identifier for each doctor
-    department_id INT,								-- Department the doctor belongs to
-    first_name VARCHAR(100) NOT NULL,               -- Doctor's first name
-    last_name VARCHAR(100) NOT NULL,                -- Doctor's last name
-    phone_number VARCHAR(15),                       -- Contact phone number
-    email VARCHAR(100),                             -- Email address
-    office_number VARCHAR(10),                       -- Office or room number
+    doctor_id INT AUTO_INCREMENT PRIMARY KEY,       
+    department_id INT,								
+    first_name VARCHAR(100) NOT NULL,               
+    last_name VARCHAR(100) NOT NULL,                
+    phone_number VARCHAR(15),                       
+    email VARCHAR(100),                             
+    office_number VARCHAR(10),                       
     FOREIGN KEY (department_id) REFERENCES Department(department_id) ON DELETE SET NULL
 );
 
@@ -98,9 +98,9 @@ VALUES
 (5, 'Emma', 'Walker', '555-5002', 'emma.walker@example.com', 'D502');
 
 CREATE TABLE PatientDoctor (
-    patient_id INT NOT NULL,                        -- Foreign key to Patient table
-    doctor_id INT NOT NULL,                         -- Foreign key to Doctor table
-    PRIMARY KEY (patient_id, doctor_id),            -- Composite primary key
+    patient_id INT NOT NULL,                        
+    doctor_id INT NOT NULL,                         
+    PRIMARY KEY (patient_id, doctor_id),            
     FOREIGN KEY (patient_id) REFERENCES Patient(patient_id) ON DELETE CASCADE,
     FOREIGN KEY (doctor_id) REFERENCES Doctor(doctor_id) ON DELETE CASCADE
 );
@@ -129,16 +129,16 @@ VALUES
 (20, 7), (20, 8), (20, 9);
 
 CREATE TABLE Appointment (
-    appointment_id INT AUTO_INCREMENT PRIMARY KEY,       -- Unique identifier for each appointment
-    patient_id INT NOT NULL,                             -- Foreign key referencing Patient table
-    doctor_id INT NOT NULL,                              -- Foreign key referencing Doctor table
-    room_id INT,                                         -- Foreign key referencing Room table
-    creation_date DATETIME NOT NULL,					-- Date the appointment was scheduled
-    appointment_date DATETIME NOT NULL,                 -- Date and time of the appointment
-    reason_for_visit VARCHAR(255) NOT NULL,             -- Purpose of the appointment
-    status ENUM('Scheduled', 'Completed', 'Cancelled') DEFAULT 'Scheduled', -- Appointment status
-    notes TEXT,                                         -- Additional notes or observations
- --    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,     -- Timestamp of record creation
+    appointment_id INT AUTO_INCREMENT PRIMARY KEY,       
+    patient_id INT NOT NULL,                             
+    doctor_id INT NOT NULL,                              
+    room_id INT,                                         
+    creation_date DATETIME NOT NULL,					
+    appointment_date DATETIME NOT NULL,                 
+    reason_for_visit VARCHAR(255) NOT NULL,             
+    status ENUM('Scheduled', 'Completed', 'Cancelled') DEFAULT 'Scheduled', 
+    notes TEXT,                                         
+ 
     FOREIGN KEY (patient_id) REFERENCES Patient(patient_id) ON DELETE CASCADE,
     FOREIGN KEY (doctor_id) REFERENCES Doctor(doctor_id) ON DELETE CASCADE,
     FOREIGN KEY (room_id) REFERENCES Room(room_id) ON DELETE SET NULL
@@ -179,14 +179,14 @@ VALUES
 
 CREATE TABLE Prescription (
     prescription_id INT AUTO_INCREMENT PRIMARY KEY,
-    patient_id INT NOT NULL,                        -- Foreign key to Patient table
-    doctor_id INT NOT NULL,                         -- Doctor who issued the prescription
-    medication_name VARCHAR(255) NOT NULL,          -- Name of the medication
-    dosage VARCHAR(100) NOT NULL,                   -- Dosage information
-    frequency VARCHAR(100) NOT NULL,                -- Frequency of administration
-    start_date DATE NOT NULL,                       -- Start date of prescription
-    end_date DATE,                                  -- End date (if applicable)
-    notes TEXT,                                     -- Additional instructions
+    patient_id INT NOT NULL,                        
+    doctor_id INT NOT NULL,                         
+    medication_name VARCHAR(255) NOT NULL,          
+    dosage VARCHAR(100) NOT NULL,                   
+    frequency VARCHAR(100) NOT NULL,                
+    start_date DATE NOT NULL,                       
+    end_date DATE,                                  
+    notes TEXT,                                     
     FOREIGN KEY (patient_id) REFERENCES Patient(patient_id) ON DELETE CASCADE,
     FOREIGN KEY (doctor_id) REFERENCES Doctor(doctor_id) ON DELETE CASCADE
 );
@@ -216,10 +216,10 @@ VALUES
 
 CREATE TABLE MedicalHistory (
     history_id INT AUTO_INCREMENT PRIMARY KEY,
-    patient_id INT NOT NULL,                        -- Foreign key to Patient table
-    condition_name VARCHAR(255) NOT NULL,           -- Name of the medical condition
-    diagnosis_date DATE,                            -- Date of diagnosis
-    notes TEXT,                                     -- Additional details
+    patient_id INT NOT NULL,                        
+    condition_name VARCHAR(255) NOT NULL,           
+    diagnosis_date DATE,                            
+    notes TEXT,                                     
     FOREIGN KEY (patient_id) REFERENCES Patient(patient_id) ON DELETE CASCADE
 );
 
