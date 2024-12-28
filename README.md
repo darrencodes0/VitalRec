@@ -1,6 +1,5 @@
-# hospital-records-db-project
-
-Using flask, html, css, sql, mongodb, python
+# VitalRec
+A Hospital Records Viewer (filled with dummy data)
 
 ## Setup
 Install all the dependencies:
