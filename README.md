@@ -21,4 +21,4 @@ Type the following command into terminal
 To get the full experience, pull the code from this repo into your IDE and install all requirements from requirements.txt
 
 Video Demo Preview (we changed the name from HealthTrack to VitalRec because it already exists):
-https://www.youtube.com/watch?v=IdAoYznq8zQ
+- https://www.youtube.com/watch?v=IdAoYznq8zQ
